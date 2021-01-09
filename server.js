@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const boduParser = require('body-parser');
-const morgan = require('morgan')
 const path = require('path');
 
 require ('dotenv').config()
@@ -10,7 +9,6 @@ const app = express();
 
 //body parser middleware
 app.use(boduParser.json());
-app.use(morgan('dev'))
 app.use('/api/items', items)
 
 //serve static assets in production
