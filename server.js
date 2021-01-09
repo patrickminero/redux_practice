@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const boduParser = require('body-parser');
 const morgan = require('morgan')
+const path = require('path');
+
 require ('dotenv').config()
 const items = require('./routes/api/items')
 const app = express();
@@ -10,6 +12,15 @@ const app = express();
 app.use(boduParser.json());
 app.use(morgan('dev'))
 app.use('/api/items', items)
+
+//serve static assets in production
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) =>{
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  })
+}
 
 const PORT = process.env.PORT || 5000;
 
