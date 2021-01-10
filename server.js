@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-// const morgan = require('morgan');
+
 
 //.env file parser
 require ('dotenv').config()
@@ -11,12 +11,12 @@ const app = express();
 
 //body parser middleware
 app.use(express.json());
-// app.use(morgan('short'));
+
 
 //routes
-app.use('/api/items', require('./routes/api/items'))
-app.use('/api/users', require('./routes/api/users'))
-app.use('/api/auth', require('./routes/api/auth'))
+app.use('/api/items', require('./routes/api/items'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 //serve static assets in production
 if(process.env.NODE_ENV === 'production'){
