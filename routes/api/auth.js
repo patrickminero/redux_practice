@@ -5,7 +5,7 @@ require ('dotenv').config();
 const jwt = require('jsonwebtoken');
 const auth = require('../../middleware/auth')
 //model
-const User = require('../../models/User');
+const User = require('../../models/User')
 
 router.post('/login', async (req, res) => {
   const {email, password } = req.body.user;
