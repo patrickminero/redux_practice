@@ -1,13 +1,13 @@
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import { addItem } from '../actions/itemActions';
 import { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ItemModal = () =>{
 
   const [collapsed, setCollapsed] = useState(false);
   const [item, setItem] = useState('');
-
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const toggleModal = () => setCollapsed(!collapsed);
 
@@ -17,11 +17,15 @@ const ItemModal = () =>{
     toggleModal();
   }
   
+
+
   return(
     <div>
+      { isAuthenticated ? 
       <Button color="dark" style={{margin: '2em 1em'}} onClick={toggleModal}>
         Add item
-      </Button>
+      </Button> : <h4>Please log in to start</h4>
+      }
 
       <Modal isOpen={collapsed} toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}>Add to shopping list</ModalHeader>
@@ -41,4 +45,4 @@ const ItemModal = () =>{
 
 
 
-export default ItemModal
+export default ItemModal;

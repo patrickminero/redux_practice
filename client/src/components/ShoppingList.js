@@ -16,6 +16,7 @@ const ShoppingList = () => {
   
   const selectItems = state => state.item.items;
   const state = useSelector(selectItems);
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   
 
   
@@ -34,8 +35,9 @@ const ShoppingList = () => {
             return(
             <CSSTransition key={elem._id} timeout={500} classNames="fade">
               <ListGroupItem>
-              <Button className="remove-btn" color="danger" size="sm" id={elem._id} onClick={handleDelete}>&times;</Button>
-                {elem.name}
+                { isAuthenticated ? <Button className="remove-btn" color="danger" size="sm" id={elem._id} onClick={handleDelete}>&times;</Button> : ""}
+              
+                {elem.name.toUpperCase()}
               </ListGroupItem>
             </CSSTransition>)
           })}

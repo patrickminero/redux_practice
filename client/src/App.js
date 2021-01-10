@@ -8,12 +8,17 @@ import store from './store';
 import { Container } from 'reactstrap'
 import { useEffect } from 'react';
 import { getItems } from './actions/itemActions';
-
+import { loadUser } from './actions/authActions';
 function App() {
+
+  useEffect(()=>{
+    store.dispatch(loadUser());
+  })
 
   useEffect(()=>{
     store.dispatch(getItems());
   }, [])
+
   
   return (
     <Provider store={store}>
