@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 
 //.env file parser
 require ('dotenv').config()
@@ -11,7 +11,7 @@ const app = express();
 
 //body parser middleware
 app.use(express.json());
-app.use(morgan('short'));
+// app.use(morgan('short'));
 
 //routes
 app.use('/api/items', require('./routes/api/items'))
